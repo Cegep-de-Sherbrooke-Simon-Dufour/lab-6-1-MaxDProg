@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TestViewHolder</string>
+    <string name="ajoutUser">Nouveau user</string>
+    <string name="nom">Nom:</string>
+    <string name="email">Email:</string>
+    <string name="ajouter">Ajouter</string>
+    <string name="annuler">Annuler</string>
+
+</resources>
