@@ -1,5 +1,8 @@
 package com.example.testviewholder;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,15 +15,20 @@ public class UserRepository {
     public UserRepository(){}
     private ArrayList<User> userList = new ArrayList<>();
 
+    private final MutableLiveData<List<User>> userLiveData = new
+            MutableLiveData<>(new ArrayList<>(userList));
+
     public void addUser(User user){
         userList.add(user);
+        userLiveData.setValue(new ArrayList<>(userList));
     }
 
     public void deleteUser(User user){
         userList.remove(user);
+        userLiveData.setValue(new ArrayList<>(userList));
     }
 
-    public List<User> getUser() {
-        return userList;
+    public LiveData<List<User>> getUser() {
+        return userLiveData;
     }
 }

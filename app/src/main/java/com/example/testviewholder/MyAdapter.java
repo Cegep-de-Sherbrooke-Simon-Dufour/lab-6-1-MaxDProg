@@ -1,5 +1,6 @@
 package com.example.testviewholder;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class MyAdapter extends ListAdapter<User, MyAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
         private final TextView textView_email;
         private final TextView textView_name;
 
@@ -55,7 +57,9 @@ public class MyAdapter extends ListAdapter<User, MyAdapter.ViewHolder> {
 
             textView_email = view.findViewById(R.id.textView_email);
             textView_name = view.findViewById(R.id.textView_name);
-
+            view.setOnClickListener(v->{
+                callback.returnValue(getItem(getAdapterPosition()));
+            });
         }
 
         public void setText(User user) {

@@ -6,6 +6,9 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,39 +24,16 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
-    UserViewModel viewModel;
-
-
-    private MyAdapter adapter = new MyAdapter();
-
-    ActivityResultLauncher<Intent> mGetContent = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-
-                    Intent data = result.getData();
-                    System.out.println(result.getResultCode());
-                    if(result.getResultCode() == RESULT_OK) {
-                        viewModel.addUser(new User(String.valueOf(data.getStringExtra("nom")), String.valueOf(data.getStringExtra("email"))));
-                        adapter.submitList(new ArrayList<>(viewModel.getUser()));
-                    }
-                }
-            });
-
+    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         viewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        setSupportActionBar(findViewById(R.id.toolbar));
 
-        FloatingActionButton btn1 = findViewById(R.id.floatingActionButton_add);
-        btn1.setOnClickListener(v -> {
-            Intent intent = new Intent( MainActivity.this, AjoutUserActivity.class);
-            mGetContent.launch(intent);
-        });
+        UserViewModel viewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         viewModel.addUser(new User("blablabla@email.com", "Jesuis Unelicorne"));
         viewModel.addUser(new User("patate@email.com", "patate frite"));
@@ -68,15 +48,16 @@ public class MainActivity extends AppCompatActivity {
         viewModel.addUser(new User("jepense@email.com", "jenai asser"));
         viewModel.addUser(new User("undernier@email.com", "encore undernier"));
 
-
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerView_Users);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
-        adapter.submitList(new ArrayList<>(viewModel.getUser()));
-        adapter.callback = (User) -> {
-            viewModel.deleteUser(User);
-            adapter.submitList(new ArrayList<>(viewModel.getUser()));
-        };
+        NavHostFragment navHostFragment = (NavHostFragment)
+                getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+        if (navHostFragment != null) {
+            navController = navHostFragment.getNavController();
+            NavigationUI.setupActionBarWithNavController(this, navController);
+        }
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        navController.navigateUp();
+        return super.onSupportNavigateUp();
     }
 }

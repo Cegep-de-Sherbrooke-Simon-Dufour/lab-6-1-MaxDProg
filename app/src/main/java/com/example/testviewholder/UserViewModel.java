@@ -1,5 +1,6 @@
 package com.example.testviewholder;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class UserViewModel extends ViewModel {
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Inject
     public UserViewModel(UserRepository userRepository){
@@ -25,7 +26,7 @@ public class UserViewModel extends ViewModel {
         userRepository.deleteUser(user);
     }
 
-    public List<User> getUser(){
+    public LiveData<List<User>> getUser(){
         return userRepository.getUser();
     }
 }
