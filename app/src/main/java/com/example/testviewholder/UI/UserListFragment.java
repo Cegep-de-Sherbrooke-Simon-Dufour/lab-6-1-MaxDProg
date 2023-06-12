@@ -1,4 +1,4 @@
-package com.example.testviewholder;
+package com.example.testviewholder.UI;
 
 import android.os.Bundle;
 
@@ -14,8 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
+import com.example.testviewholder.Data.User;
+import com.example.testviewholder.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;

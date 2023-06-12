@@ -1,9 +1,15 @@
-package com.example.testviewholder;
+package com.example.testviewholder.Data;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.util.Objects;
 
+@Entity
 public class User {
 
+    @PrimaryKey(autoGenerate = true)
+    public int id;
     private String email;
     private String name;
 

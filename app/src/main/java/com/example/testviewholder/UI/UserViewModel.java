@@ -1,7 +1,10 @@
-package com.example.testviewholder;
+package com.example.testviewholder.UI;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.testviewholder.Data.User;
+import com.example.testviewholder.Data.UserRepository;
 
 import java.util.List;
 
@@ -28,5 +31,8 @@ public class UserViewModel extends ViewModel {
 
     public LiveData<List<User>> getUser(){
         return userRepository.getUser();
+    }
+
+    public static class UserDAO {
     }
 }

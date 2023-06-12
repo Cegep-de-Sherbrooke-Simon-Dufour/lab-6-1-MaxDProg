@@ -1,23 +1,15 @@
-package com.example.testviewholder;
+package com.example.testviewholder.UI;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
+import com.example.testviewholder.Data.User;
+import com.example.testviewholder.R;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -32,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setSupportActionBar(findViewById(R.id.toolbar));
-
+        /*
         UserViewModel viewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         viewModel.addUser(new User("blablabla@email.com", "Jesuis Unelicorne"));
@@ -47,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.addUser(new User("planche@email.com", "planche adecouper"));
         viewModel.addUser(new User("jepense@email.com", "jenai asser"));
         viewModel.addUser(new User("undernier@email.com", "encore undernier"));
-
+        */
         NavHostFragment navHostFragment = (NavHostFragment)
                 getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         if (navHostFragment != null) {

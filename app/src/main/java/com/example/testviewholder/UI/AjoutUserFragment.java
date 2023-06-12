@@ -1,4 +1,4 @@
-package com.example.testviewholder;
+package com.example.testviewholder.UI;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.testviewholder.Data.User;
+import com.example.testviewholder.R;
 
 public class AjoutUserFragment extends Fragment {
 
